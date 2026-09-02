@@ -1,0 +1,24 @@
+@startuml secuencia
+participant Cliente 
+participant Taquilla
+participant Agenda 
+participant Reserva
+Cliente -> Taquilla: 1. Solicitud
+activate Taquilla
+Taquilla -> Agenda: 2. Consultar
+activate Agenda
+Agenda -> Agenda: 2a. Buscar Disponible
+Agenda --> Taquilla: 3. Disponible
+deactivate Agenda
+Taquilla --> Cliente: 4. Confirmación 
+deactivate Taquilla
+Cliente -> Taquilla: 5. Confirmacion
+alt Verificar si Saldo OK 
+ Taquilla -> Reserva: 4.Crear
+ Reserva --> Taquilla: 5. Confirmado
+ Taquilla -> Cliente: 6. Confirmacion
+else Saldo Insufciente 
+ Taquilla --> Cliente: 4. Rechazado
+end
+deactivate Taquilla
+@enduml
