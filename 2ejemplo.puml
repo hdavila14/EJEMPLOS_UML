@@ -1,0 +1,36 @@
+@startuml 2ejemplo
+title Sistema de Matrícula - Diagrama de Secuencia
+actor Estudiante
+participant Registro
+participant Sistema
+database BD
+== Publicación de cursos ==
+Registro -> Sistema : Digita los Cursos a publicar
+activate Sistema
+Sistema -> BD : Almacena la info de cursos
+activate BD
+BD --> Sistema : Confirma almacenamiento
+deactivate BD
+Sistema --> Registro : Confirma publicación
+deactivate Sistema
+== Consulta de cursos ==
+Estudiante -> Sistema : Consulta los cursos disponibles
+activate Sistema
+Sistema -> BD : Consulta con base en las reglas del negocio
+activate BD
+BD -> BD : Ejecución de consulta
+BD --> Sistema : Devuelve lista de cursos
+deactivate BD
+Sistema --> Estudiante : Despliega lista de cursos disponibles
+deactivate Sistema
+== Matrícula ==
+Estudiante -> Sistema : Selecciona cursos a matricular
+activate Sistema
+Sistema -> BD : Almacenar matrícula
+activate BD
+BD --> Sistema : Confirma almacenamiento
+deactivate BD
+Sistema --> Estudiante : Confirma Matrícula
+deactivate Sistema
+== ==
+@enduml
