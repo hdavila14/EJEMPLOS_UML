@@ -1,0 +1,42 @@
+@startuml clases_reservas
+skinparam classAttributeIconSize 0
+
+class Cliente {
+  - nombre: String
+  - direccion: String
+  - telefono: String
+  - pinTarjeta: String
+  - edad: Double
+  # idInterno: Int
+  + registrarDatos(): void
+  + solicitarReserva(): void
+}
+
+class Reserva {
+  - idReserva: int
+  - estado: String
+  - fecha: Date
+  + calcularPrecio(): double
+  + confirmarReserva(): boolean
+}
+
+class Agenda {
+  - localidadesLibres: int
+  + comprobarDisponibilidad(): boolean
+}
+
+class ClientePreferencial {
+  - descuentoPreferencial: double
+}
+
+class ClienteCorporativo {
+  - volumenReservas: int
+  + calcularDescuentoCorporativo(): double
+}
+
+Cliente <|-- ClientePreferencial
+Cliente <|-- ClienteCorporativo
+Cliente "1" --o "*" Reserva
+Reserva "1" -- "1" Agenda
+
+@enduml
