@@ -1,0 +1,33 @@
+@startuml clases_boblioteca
+
+class Libro {
+    - ISBN: String
+    - titulo: String
+    - autor: String
+    - anoPublicacion: int
+}
+
+class Usuario {
+    - idUsuario: int
+    - nombre: String
+    - correo: String
+    - telefono: String
+}
+
+class Prestamo {
+    - idPrestamo: int
+    - fechaPrestamo: Date
+    - fechaDevolucion: Date
+}
+
+class Empleado {
+    - idEmpleado: int
+    - nombre: String
+    - puesto: String
+}
+
+Usuario "1" -- "*" Prestamo 
+Libro "1" -- "1" Prestamo 
+Empleado "1" -- "*" Prestamo
+
+@enduml
